@@ -34,7 +34,7 @@ void Insert(Tree *tree,ElementType value)
         while(TempPointer!=NULL)
         {
             //如果传入的值比当前节点的左子节点小且当前节点左子节点为空，
-            //那么将新疆节点连接到当前节点的左子节点上,插入结束
+            //那么将新建节点连接到当前节点的左子节点上,插入结束
             if(value<TempPointer->data)
             {
                 if(TempPointer->left==NULL)
