@@ -23,7 +23,7 @@ typedef struct Tree
 {
     TreeNode* Root;
 }Tree;
-// 插入/建立节点
+// 插入/建立节点(以二叉搜索树的形式构造)
 void Insert(Tree* tree, ElementType value)
 {
     //创建一个空节点
@@ -71,7 +71,7 @@ void Insert(Tree* tree, ElementType value)
     //插入结束
     return;
 }
-//递归中序遍历
+//递归中序遍历,可以将构造的二叉搜索树升序输出
 void InoderTraversal(TreeNode* treeNode)
 {
     //如果treeNode为空，则回退上一节点
