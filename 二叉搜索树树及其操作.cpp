@@ -177,10 +177,40 @@ void NonRecursive_InorderTraversal(TreeNode* treeNode)
         }
     }
 }
+//非递归后序遍历
 void NonRecursive_PostorderTraversal(TreeNode *treeNode)
 {
     stack<TreeNode*>NodeStack;
-    
+    TreeNode *curPointer=treeNode;//用于遍历的指针
+    TreeNode *lastPointer;//指示上次访问节点的指针
+    while (curPointer!=NULL)//一直遍历入栈到左子树为空时
+    {
+        NodeStack.push(curPointer);
+        curPointer=curPointer->left;
+    }
+    while(!NodeStack.empty())
+    {
+        curPointer=NodeStack.top();//左子树为空，现在尝试右子树
+        NodeStack.pop();
+        //如果当前节点的右子树为空或者已经被访问过，那么就打印出来
+        if(curPointer->right==NULL||curPointer->right==lastPointer)
+        {
+            cout<<curPointer->data<<" ";
+            //将当前节点设置为最近访问过
+            lastPointer=curPointer;
+        }
+        else
+        {
+            NodeStack.push(curPointer);
+            curPointer=curPointer->right;
+            while(curPointer)
+            {
+                NodeStack.push(curPointer);
+                curPointer=curPointer->left;
+            }
+        }
+    }
+
 }
 int main()
 {
