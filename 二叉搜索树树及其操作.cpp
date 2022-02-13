@@ -13,7 +13,7 @@ these data will found a binary tree like this sketch.
                10
 The result of PreorderTraversal is:5 3 1 0 2 4 7 6 8 9 10
 The result of InorderTraversal is:0 1 2 3 4 5 6 7 8 9 10
-The result of PostorderTraversal is:0 2 1 4 3 6 8 10 9 7 5
+The result of PostorderTraversal is:0 2 1 4 3 6 10 9 8 7 5
 
 To test whether the order of input data can effect the struct of the binary tree:
 11
@@ -25,6 +25,9 @@ the result show a different binary tree:
   0   2         8
                   9
                     10   
+The result of PreorderTraversal is:5 3 1 0 2 4 6 7 8 9 10
+The result of InorderTraversal is:0 1 2 3 4 5 6 7 8 9 10
+The result of PostorderTraversal is:0 2 1 4 3 10 9 8 7 6 5
 */
 typedef int ElementType;
 //节点定义
@@ -90,10 +93,10 @@ void Insert(Tree* tree, ElementType value)
 void PreorderTraversal(TreeNode* treeNode)
 {
     //如果treeNode为空，则回退上一节点
-
-    if (treeNode != NULL)
+    if(treeNode==NULL)return;
+    else
     {
-        cout << "Node->data= " << treeNode->data << endl;
+        cout << treeNode->data <<" ";
         PreorderTraversal(treeNode->left);
         PreorderTraversal(treeNode->right);
     }
@@ -102,11 +105,11 @@ void PreorderTraversal(TreeNode* treeNode)
 void InorderTraversal(TreeNode* treeNode)
 {
     //如果treeNode为空，则回退上一节点
-
-    if (treeNode != NULL)
+    if(treeNode==NULL)return;
+    else
     {
         InorderTraversal(treeNode->left);
-        cout << "Node->data= " << treeNode->data << endl;
+        cout << treeNode->data <<" ";
         InorderTraversal(treeNode->right);
     }
 }
@@ -114,12 +117,12 @@ void InorderTraversal(TreeNode* treeNode)
 void PostorderTraversal(TreeNode* treeNode)
 {
     //如果treeNode为空，则回退上一节点
-
-    if (treeNode != NULL)
+    if(treeNode==NULL)return;
+    else
     {
-        InorderTraversal(treeNode->left);
-        InorderTraversal(treeNode->right);
-        cout << "Node->data= " << treeNode->data << endl;
+        PostorderTraversal(treeNode->left);
+        PostorderTraversal(treeNode->right);
+        cout << treeNode->data <<" ";
     }
 }
 //非递归先序遍历
@@ -133,18 +136,18 @@ void NonRecursive_PreorderTraversal(TreeNode* treeNode)
         if(tempPointer!=NULL)
         {           
             NodeStack.push(tempPointer);
-            cout<<"Node->data: "<<tempPointer->data<<endl;
+            cout<<tempPointer->data<<" ";
             tempPointer=tempPointer->left;
         }
         else
         //即tempPointer==NULL且NodeStack不等于空，意为左子树遍历到底了
         //此时需要回退到上一节点(即其左子节点是当前节点的节点)
         {
-            //使其回退到上一节点
-            NodeStack.pop();
-            //并让tempPointer上一节点，用于访上一节点的右子节点
+            //此时节点为空使其回退到上一节点
             tempPointer=NodeStack.top();
-            //指向右子节点
+            //将回退的节点退栈，以便于下一次回退到上上个节点（此时栈顶变成了上上个节点）
+            NodeStack.pop();
+            //并访问此节点（回退前）的上一节点的右子节点
             tempPointer=tempPointer->right;
         }
     }
@@ -167,12 +170,17 @@ void NonRecursive_InorderTraversal(TreeNode* treeNode)
         //然后从右子节点继续进行遍历
         {
             tempPointer = NodeStack.top();
+            cout <<tempPointer->data <<" ";
+            //返回上一节点
             NodeStack.pop();
-            cout <<"Node->data= "<<tempPointer->data << endl;
             tempPointer = tempPointer->right;
         }
     }
-
+}
+void NonRecursive_PostorderTraversal(TreeNode *treeNode)
+{
+    stack<TreeNode*>NodeStack;
+    
 }
 int main()
 {
@@ -190,18 +198,19 @@ int main()
     cout<<"this is the result of PreorderTraversal:\n";
     PreorderTraversal(tree.Root);
 
-    // cout<<"this is the result of NonRecursive_PreorderTraversal:\n";
-    // NonRecursive_PreorderTraversal(tree.Root);
+    cout<<"\nthis is the result of NonRecursive_PreorderTraversal:\n";
+    NonRecursive_PreorderTraversal(tree.Root);
 
-    cout<<"this is the result of InorderTraversal:\n";
+    cout<<"\nthis is the result of InorderTraversal:\n";
     InorderTraversal(tree.Root);
 
-    // cout<<"this is the result of NonRecursive_InorderTraversal:\n";
-    // NonRecursive_InorderTraversal(tree.Root);
+    cout<<"\nthis is the result of NonRecursive_InorderTraversal:\n";
+    NonRecursive_InorderTraversal(tree.Root);
     
-    cout<<"this is the result of PostorderTraversal:\n";
+    cout<<"\nthis is the result of PostorderTraversal:\n";
     PostorderTraversal(tree.Root);
 
-    
+    cout<<"\nthis is the result of NonRecursive_PostorderTraversal:\n";
+    NonRecursive_PostorderTraversal(tree.Root);
     return 0;
 }
