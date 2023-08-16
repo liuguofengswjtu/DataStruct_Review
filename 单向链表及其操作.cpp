@@ -1,19 +1,19 @@
-ï»¿#include <iostream>
+#include <iostream>
 using namespace std;
-//å®šä¹‰èŠ‚ç‚¹
+//¶¨Òå½Úµã
 typedef struct Node {
 	int data;
 	struct Node* next;
 }Node;
-//å°¾æ’æ³•
+//Î²²å·¨
 Node* RearInitList()
 {
 	int dataIn;
 	cout << "please input the member of the list:\n";
 	
-	Node* Head=(Node*)malloc(sizeof(Node));//å¤´èŠ‚ç‚¹çš„æŒ‡é’ˆï¼Œæ— æ•°æ®ï¼›
+	Node* Head=(Node*)malloc(sizeof(Node));//Í·½ÚµãµÄÖ¸Õë£¬ÎŞÊı¾İ£»
 	Head->next = NULL;
-	Node* Rear = Head;//å°¾æŒ‡é’ˆï¼Œå§‹ç»ˆæŒ‡å‘å°¾éƒ¨
+	Node* Rear = Head;//Î²Ö¸Õë£¬Ê¼ÖÕÖ¸ÏòÎ²²¿
 	while (scanf("%d", &dataIn) != EOF)
 	{
 		Node* Element = (Node*)malloc(sizeof(Node));
@@ -24,34 +24,34 @@ Node* RearInitList()
 	Rear->next = NULL;
 	return Head;
 }
-//å¤´æ’æ³•
+//Í·²å·¨
 Node* HeadInitList()
 {
 	int datain;
 	Node *Head=(Node*)malloc(sizeof(Node));
-	//æŠŠå¤´ç»“ç‚¹ä¸‹ä¸€ä¸ªèŠ‚ç‚¹å…ˆè®¾ä¸ºç©º
-	Head->next=NU
+	//°ÑÍ·½áµãÏÂÒ»¸ö½ÚµãÏÈÉèÎª¿Õ
+	Head->next=NULL;
 	while(scanf("%d",&datain)!=EOF)
 	{
 		Node *NewElement=(Node*)malloc(sizeof(Node));
-		//æ–°èŠ‚ç‚¹ä¸‹ä¸€ä¸ªç­‰äºå¤´ç»“ç‚¹ä¸‹ä¸€ä¸ªï¼Œè¿™æ ·åœ¨ç¬¬ä¸€ä¸ªæ–°èŠ‚ç‚¹æ—¶ï¼ˆä¹Ÿå³å…¨éƒ¨å®Œæˆåçš„æœ€åçš„èŠ‚ç‚¹ï¼‰ï¼Œå¯ä»¥ä½¿å…¶nextæŒ‡é’ˆæŒ‡å‘ç©º
-		//ä¸”å½“åé¢æ–°æ·»åŠ èŠ‚ç‚¹æ—¶ï¼Œå¯ä»¥è®©æ–°èŠ‚ç‚¹å’Œä¸Šä¸€æ¬¡çš„æ–°èŠ‚ç‚¹ç›¸è¿æ¥ï¼ˆæ–°èŠ‚ç‚¹çš„nextæŒ‡é’ˆæŒ‡å‘ä¸Šæ¬¡çš„æ–°èŠ‚ç‚¹ï¼‰
+		//ĞÂ½ÚµãÏÂÒ»¸öµÈÓÚÍ·½áµãÏÂÒ»¸ö£¬ÕâÑùÔÚµÚÒ»¸öĞÂ½ÚµãÊ±£¨Ò²¼´È«²¿Íê³ÉºóµÄ×îºóµÄ½Úµã£©£¬¿ÉÒÔÊ¹ÆänextÖ¸ÕëÖ¸Ïò¿Õ
+		//ÇÒµ±ºóÃæĞÂÌí¼Ó½ÚµãÊ±£¬¿ÉÒÔÈÃĞÂ½ÚµãºÍÉÏÒ»´ÎµÄĞÂ½ÚµãÏàÁ¬½Ó£¨ĞÂ½ÚµãµÄnextÖ¸ÕëÖ¸ÏòÉÏ´ÎµÄĞÂ½Úµã£©
 		NewElement->next=Head->next;
 		NewElement->data=datain;
 		Head->next=NewElement;	
 	}
 	return Head;
 }
-//å°è¯•éå†æ’å…¥æ³•ï¼Œå¤´ç»“ç‚¹æœ‰æ•°æ®,æ‰€ä»¥displayå‡½æ•°ä¸èƒ½ç›´æ¥æ˜¾ç¤ºå‡ºç¬¬ä¸€ä¸ªå…ƒç´ 
+//³¢ÊÔ±éÀú²åÈë·¨£¬Í·½áµãÓĞÊı¾İ,ËùÒÔdisplayº¯Êı²»ÄÜÖ±½ÓÏÔÊ¾³öµÚÒ»¸öÔªËØ
 Node* ForInitList()
 {
 	int dataIn;
 	cout << "please input the member of the list:\n";
 	scanf("%d",&dataIn);
-	Node* Head=(Node*)malloc(sizeof(Node));//å¤´èŠ‚ç‚¹çš„æŒ‡é’ˆï¼Œæ— æ•°æ®ï¼›
+	Node* Head=(Node*)malloc(sizeof(Node));//Í·½ÚµãµÄÖ¸Õë£¬ÎŞÊı¾İ£»
 	Head->next = NULL;
     Head->data=dataIn;
-	Node* List = Head;//ç”¨äºå‘åéå†
+	Node* List = Head;//ÓÃÓÚÏòºó±éÀú
 	while (scanf("%d", &dataIn) != EOF)
 	{
 		Node* Element = (Node*)malloc(sizeof(Node));
@@ -62,7 +62,7 @@ Node* ForInitList()
 	List->next = NULL;
 	return Head;
 }
-//æŸ¥æ‰¾é•¿åº¦
+//²éÕÒ³¤¶È
 int GetLength(Node* list)
 {
 	int length=0;
@@ -73,7 +73,7 @@ int GetLength(Node* list)
 	}
 	return length;
 }
-//æ·»åŠ å…ƒç´ 
+//Ìí¼ÓÔªËØ
 int AddElement(Node* list,int index,int element)
 {
 	Node /*PreElement,*/*NewElement;
@@ -92,7 +92,7 @@ int AddElement(Node* list,int index,int element)
 	}
 	else return 1;
 }
-//åˆ é™¤å…ƒç´ 
+//É¾³ıÔªËØ
 int DeleteElement(Node *list,int index)
 {
 	if(index!=0&&index<=GetLength(list))
@@ -106,7 +106,7 @@ int DeleteElement(Node *list,int index)
 	}
 	return 1;
 }
-//æŸ¥æ‰¾å…ƒç´ 
+//²éÕÒÔªËØ
 int SearchElement(Node *list,int index)
 {
 	if(index!=0&&index<=GetLength(list))
